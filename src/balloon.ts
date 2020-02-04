@@ -1,21 +1,20 @@
 export default class Balloon {
-  element: any = undefined;
-  color: string = '#c1c2c3';
-  width: number = 200;
-  height: number = 200;
+  public element: Window = undefined;
+  private colors: string[] = ['#42cef5', '#4251f5', '#ce42f5', '#f5429e', '#f54242', '#f5b342', '#f5f542', '#78f542', '#2624b3', '#7b13ab', '#92ab13', '#ab135c', '#649c85'];
 
-  constructor(element: any = null, color: string = '#c1c2c3', width: number = 100, height: number = 100) {
-    this.color = color;
-    this.width = width;
-    this.height = height;
+  constructor(element: Window = window) {
+    const color = this.colors[Math.round(Math.random()*10)]
+
     this.element = element;
-    console.log(element);
+    this.element.document.body.style.backgroundColor = color;
     console.log('%cNew Balloon', `color: white; font-weight: bold; background: ${color}; padding:3px 5px;`);
   }
 
-  scaleUp() {
-    this.width += 50;
-    this.height += 50;
+  public pumpUp() {
+    this.element.resizeTo(
+      this.element.innerWidth + 50,
+      this.element.innerHeight + 100
+    );
   }
 }
 
