@@ -15,9 +15,11 @@ export default class Pump {
   public onResize(): void {
     if (this.element.offsetHeight < 560 && this.canInflate) {
       this.canInflate = false;
+      new Audio(require('./pumpUp.mp3').default).play();
       this.pumpUpBalloons();
     } else if (this.element.offsetHeight >= 560 && !this.canInflate) {
       this.canInflate = true;
+      new Audio(require('./pumpDown.mp3').default).play();
     }
   }
 
@@ -29,6 +31,8 @@ export default class Pump {
         'left=100, top=100, width=200, height=200, menubar=no, toolbar=no',
       )
     );
+
+    balloon.element.addEventListener('click', () => { this.burstBall(balloon) });
     this.balloonList.push(balloon);
   }
 
@@ -38,5 +42,9 @@ export default class Pump {
     })
   }
 
+  private burstBall(balloon: Balloon) {
+    this.balloonList.splice(this.balloonList.indexOf(balloon), 1);
+    balloon.burst();
+  }
 
 }

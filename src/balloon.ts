@@ -16,7 +16,9 @@ export default class Balloon {
       this.element.innerHeight + 100
     );
   }
+
+  public burst() {
+    new Audio(require('./burst.mp3').default).play();
+    this.element.close();
+  }
 }
-
-
-// balloonList.push(new Balloon(null, 'purple'));
