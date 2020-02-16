@@ -44,7 +44,7 @@ export default class Pump {
 
   private pumpUpBalloons(): void {
     this.balloonList.forEach((balloon: Balloon): void => {
-      balloon.pumpUp();
+      if (!!this.intersection(balloon)) balloon.pumpUp();
     })
   }
 
@@ -52,24 +52,32 @@ export default class Pump {
     this.balloonList.splice(this.balloonList.indexOf(balloon), 1);
     balloon.burst();
 
-    if (!this.balloonList.length) clearInterval(this.timer);
+    if (!this.balloonList.length) {
+      clearInterval(this.timer);
+      setTimeout(() => { this.balloonObservable(); });
+    }
   }
 
   private balloonObservable(): void {
-    const statsElement: Element = document.getElementById('stats');
-    let result: string = `<b>
-      Y:${window.screenY}; X:${window.screenX};
-      h:${window.innerHeight}; w:${window.innerWidth};
-      </b><br><br>`;
+    let hasLeftBalloons: Boolean = false;
+    let hasRightBalloons: Boolean = false;
 
     this.balloonList.forEach((balloon: Balloon) => {
-      result += `Y:${balloon.element.screenY};
-      X${balloon.element.screenX};
-      {${this.intersection(balloon)}}<br>`;
-
+      if (!hasLeftBalloons && this.intersection(balloon) < 0) hasLeftBalloons = true;
+      if (!hasRightBalloons && this.intersection(balloon) > 0) hasRightBalloons = true;
     });
 
-    statsElement.innerHTML = result;
+    if (hasLeftBalloons && !this.element.classList.contains('left')) {
+      this.element.classList.add('left');
+    } else if (!hasLeftBalloons && this.element.classList.contains('left')) {
+      this.element.classList.remove('left');
+    }
+
+    if (hasRightBalloons && !this.element.classList.contains('right')) {
+      this.element.classList.add('right');
+    } else if (!hasRightBalloons && this.element.classList.contains('right')) {
+      this.element.classList.remove('right');
+    }
   }
 
   /**
