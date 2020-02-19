@@ -10,7 +10,26 @@ body {
   background-color: white;
   transition: all 1s ease-in-out;
 
-  @media (prefers-color-scheme: dark) { background-color: rgb(2,25,40); }
+  &.cyan { background-color: #42cef5; }
+  &.blue { background-color: #4251f5; }
+  &.purple { background-color: #ce42f5; }
+  &.pink { background-color: #f5429e; }
+  &.red { background-color: #f54242; }
+  &.yellow { background-color: #f5b342; }
+  &.green { background-color: #78f542; }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgb(2,25,40);
+    filter: brightness(.6) grayscale(.5);
+
+    &.cyan { background-color: #136f88; }
+    &.blue { background-color: #1b26a7; }
+    &.purple { background-color: #65107d; }
+    &.pink { background-color: #951557; }
+    &.red { background-color: #941616; }
+    &.yellow { background-color: #996917; }
+    &.green { background-color: #2d770d; }
+  }
 }
 
 .pump {
@@ -23,10 +42,6 @@ body {
   min-height: 390px;
   max-height: 650px;
   transition: all 1s ease-in-out;
-
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(.6) grayscale(.5);
-  }
 
   &::before {
     right: 50%;

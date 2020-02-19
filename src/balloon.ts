@@ -1,12 +1,11 @@
 export default class Balloon {
-  public element: Window = undefined;
-  private colors: string[] = ['#42cef5', '#4251f5', '#ce42f5', '#f5429e', '#f54242', '#f5b342', '#f5f542', '#78f542', '#2624b3', '#7b13ab', '#92ab13', '#ab135c', '#649c85'];
-
+  public element: Window;
+  private colors: string[] = ['cyan','blue','purple','pink','red','yellow','green'];
   constructor(element: Window = window) {
-    const color = this.colors[Math.round(Math.random()*10)];
+    const color = this.colors[Math.round(Math.random()*6)];
 
     this.element = element;
-    this.element.document.body.style.backgroundColor = color;
+    this.element.document.body.classList.add(color);
     this.element.document.body.addEventListener('click', () => {
       this.element.close();
     });
