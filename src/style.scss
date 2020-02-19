@@ -7,6 +7,10 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  background-color: white;
+  transition: all 1s ease-in-out;
+
+  @media (prefers-color-scheme: dark) { background-color: rgb(2,25,40); }
 }
 
 .pump {
@@ -16,9 +20,13 @@ body {
   margin: auto auto 0;
   padding: 20px 0;
   height: 100%;
-  // width: 100%;
   min-height: 390px;
   max-height: 650px;
+  transition: all 1s ease-in-out;
+
+  @media (prefers-color-scheme: dark) {
+    filter: brightness(.6) grayscale(.5);
+  }
 
   &::before {
     right: 50%;
@@ -111,10 +119,4 @@ body {
       }
     }
   }
-}
-
-#stats {
-  position: absolute;
-  top: 10px;
-  left: 10px;
 }

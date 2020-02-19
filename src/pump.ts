@@ -3,7 +3,7 @@ import Balloon from './balloon';
 export default class Pump {
   private element: HTMLElement = undefined;
   private canInflate: Boolean = false;
-  private balloonList: Balloon[] = [];
+  private balloonList: Set<Balloon> = new Set;
   private timer: NodeJS.Timeout;
 
   constructor(element: HTMLElement = null) {
@@ -28,18 +28,18 @@ export default class Pump {
     const balloon: Balloon = new Balloon(
       window.open(
         window.location.href,
-        `nameId_${this.balloonList.length}`,
+        `nameId_${this.balloonList.size}`,
         'left=0, top=0, width=200, height=200, menubar=no, toolbar=no',
       )
     );
 
     balloon.element.addEventListener('click', () => { this.burstBall(balloon) });
 
-    if (!this.balloonList.length) {
+    if (!this.balloonList.size) {
       this.timer = setInterval(() => { this.balloonObservable() }, 100);
     }
 
-    this.balloonList.push(balloon);
+    this.balloonList.add(balloon);
   }
 
   private pumpUpBalloons(): void {
@@ -49,10 +49,10 @@ export default class Pump {
   }
 
   private burstBall(balloon: Balloon): void {
-    this.balloonList.splice(this.balloonList.indexOf(balloon), 1);
+    this.balloonList.delete(balloon);
     balloon.burst();
 
-    if (!this.balloonList.length) {
+    if (!this.balloonList.size) {
       clearInterval(this.timer);
       setTimeout(() => { this.balloonObservable(); });
     }
