@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: white;
-  transition: all 1s ease-in-out;
+  transition: background-color 1s ease-in-out, filter 1s ease-in-out;
 
   &.cyan { background-color: #42cef5; }
   &.blue { background-color: #4251f5; }
