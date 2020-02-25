@@ -1,3 +1,5 @@
+[Try that yourself](https://max-0n.github.io/pump/)
+
 ![Build with love](http://forthebadge.com/images/badges/built-with-love.svg)
 
 ![Gluten free](https://forthebadge.com/images/badges/gluten-free.svg) ![Makes people smile](https://forthebadge.com/images/badges/makes-people-smile.svg) ![Contains cat gifs](https://forthebadge.com/images/badges/contains-cat-gifs.svg)
@@ -6,7 +8,7 @@
 
 ![Uses git](https://forthebadge.com/images/badges/uses-git.svg)
 
-[![Pump simulator](./preview.gif)](./preview.mp4)
+[![Pump simulator](./preview.gif)](https://max-0n.github.io/pump/)
 
 # Pump simulator
 
