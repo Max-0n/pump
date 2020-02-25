@@ -6,6 +6,8 @@
 
 ![Uses git](https://forthebadge.com/images/badges/uses-git.svg)
 
+[![Pump simulator](./preview.gif)](./preview.mp4)
+
 # Pump simulator
 
 ## Build project
