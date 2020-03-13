@@ -11,9 +11,6 @@ const config = {
     filename: "[name].[hash].bundle.js",
     path: path.resolve(__dirname, 'docs')
   },
-  devServer: {
-    port: 3000,
-  },
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
