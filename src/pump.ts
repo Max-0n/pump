@@ -2,15 +2,52 @@ import Balloon from './balloon';
 
 export default class Pump {
   private element: HTMLElement = undefined;
+  private handle: HTMLElement = undefined;
+  private balloon: HTMLElement = undefined;
   private canInflate: Boolean = false;
   private balloonList: Set<Balloon> = new Set;
   private timer: NodeJS.Timeout;
 
   constructor(element: HTMLElement = null) {
     this.element = element;
+    this.handle = element.querySelector('.pump__handle')
+    this.balloon = element.querySelector('.pump__baloon')
+
+    console.log(this.handle)
+
     this.element.addEventListener('click', () => {
-      this.createNewBalloon();
+      console.log('clicked');
+
+      if (!this.handle.classList.contains('pushed')) {
+        new Audio(require('./pumpUp.mp3').default).play();
+        this.handle.classList.add('pushed');
+        setTimeout(() => {
+          this.handle.classList.remove('pushed');
+        }, 900)
+
+        if (!this.balloon.classList.contains('s')) {
+          this.balloon.classList.add('s')
+        } else if (!this.balloon.classList.contains('m')) {
+          this.balloon.classList.add('m')
+        } else if (!this.balloon.classList.contains('l')) {
+          this.balloon.classList.add('l')
+        } else if (!this.balloon.classList.contains('xl')) {
+          this.balloon.classList.add('xl')
+        } else {
+          new Audio(require('./burst.mp3').default).play();
+          this.balloon.classList.add('down')
+          this.balloon.classList.remove('s')
+          this.balloon.classList.remove('m')
+          this.balloon.classList.remove('l')
+          this.balloon.classList.remove('xl')
+
+          setTimeout(() => {
+            this.balloon.classList.remove('down')
+          }, 300)
+        }
+      }
     });
+
   }
 
   public onResize(): void {
